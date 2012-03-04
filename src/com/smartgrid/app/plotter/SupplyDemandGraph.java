@@ -1,6 +1,8 @@
 package com.smartgrid.app.plotter;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -26,9 +28,13 @@ public class SupplyDemandGraph extends JFrame {
 	@SuppressWarnings("unchecked")
 	public SupplyDemandGraph(int runID) {
 
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int w = (int) screenSize.getWidth();
+		int h = (int) (screenSize.getHeight()/1.5);
+
 		// frame parameters
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(1280, 720);
+		setBounds(0, 0, w, h);
 
 		PlotterDB p = new PlotterDB();
 		ResultSet rs = null;
@@ -83,7 +89,7 @@ public class SupplyDemandGraph extends JFrame {
 		// Format the plot
 		plot.setInsets(new Insets2D.Double(10, 10, 10, 10));
 		plot.setSetting(XYPlot.BACKGROUND, Color.WHITE);
-		plot.setSetting(XYPlot.TITLE, "Supply - Overall Demand for run: "
+		plot.setSetting(XYPlot.TITLE, "Supply - Overall Demand \n at run: "
 				+ runInfo);
 		plot.setSetting(XYPlot.LEGEND, true);
 		plot.getLegend().setSetting(Legend.ORIENTATION, Orientation.HORIZONTAL);

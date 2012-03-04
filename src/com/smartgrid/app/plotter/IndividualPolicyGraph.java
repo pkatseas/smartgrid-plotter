@@ -1,6 +1,8 @@
 package com.smartgrid.app.plotter;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -43,10 +45,16 @@ public class IndividualPolicyGraph extends JFrame {
 	@SuppressWarnings("unchecked")
 	public void getDemandGraph() {
 
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		double width = screenSize.getWidth();
+		double height = screenSize.getHeight();
+
+		int w = (int) (width/2);
+		int h = (int) (height/1.5);
+
 		// frame parameters
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setBounds(0, 0, 640, 720);
-		// setSize(640, 720);
+		setBounds(0, 0, w, h);
 
 		PlotterDB p = new PlotterDB();
 		ResultSet rs = null;
@@ -108,7 +116,8 @@ public class IndividualPolicyGraph extends JFrame {
 		plot.setInsets(new Insets2D.Double(10, 10, 10, 10));
 		plot.setSetting(XYPlot.BACKGROUND, Color.WHITE);
 		plot.setSetting(XYPlot.TITLE, mode + " Household Demand for Policy: "
-				+ p.getPolicyInfo(policyID));
+				+ p.getPolicyInfo(policyID)
+				+"\n at run: " + p.getRunInfo(runID));
 
 		// axis format
 		AxisRenderer axisRendererY = plot.getAxisRenderer(XYPlot.AXIS_Y);
@@ -142,9 +151,16 @@ public class IndividualPolicyGraph extends JFrame {
 	@SuppressWarnings("unchecked")
 	public void getAppliancesGraph() {
 
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		double width = screenSize.getWidth();
+		double height = screenSize.getHeight();
+
+		int w = (int) (width/2);
+		int h = (int) (height/1.5);
+
 		// frame parameters
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setBounds(641, 0, 640, 720);
+		setBounds(w, 0, w, h);
 
 		PlotterDB p = new PlotterDB();
 		ResultSet rs = null;
@@ -206,7 +222,8 @@ public class IndividualPolicyGraph extends JFrame {
 		plot.setSetting(
 				XYPlot.TITLE,
 				mode + " Household Active Appliances for Policy: "
-						+ p.getPolicyInfo(policyID));
+						+ p.getPolicyInfo(policyID)
+						+"\n at run: " + p.getRunInfo(runID));
 
 		// axis format
 		AxisRenderer axisRendererY = plot.getAxisRenderer(XYPlot.AXIS_Y);

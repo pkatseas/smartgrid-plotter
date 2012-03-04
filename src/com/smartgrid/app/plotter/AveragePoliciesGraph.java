@@ -1,6 +1,8 @@
 package com.smartgrid.app.plotter;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -35,10 +37,17 @@ public class AveragePoliciesGraph extends JFrame {
 
 	@SuppressWarnings("unchecked")
 	public void getDemandGraph() {
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		double width = screenSize.getWidth();
+		double height = screenSize.getHeight();
+
+		int w = (int) (width/2);
+		int h = (int) (height/1.5);
 
 		// frame parameters
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setBounds(0, 0, 640, 720);
+		setBounds(0, 0, w, h);
 
 		PlotterDB p = new PlotterDB();
 		ResultSet rs = null;
@@ -137,7 +146,7 @@ public class AveragePoliciesGraph extends JFrame {
 		plot.setInsets(new Insets2D.Double(10, 10, 10, 10));
 		plot.setSetting(XYPlot.BACKGROUND, Color.WHITE);
 		plot.setSetting(XYPlot.TITLE,
-				"Average Demand across Policies for run: "
+				"Average Demand across Policies \n at run: "
 						+ runInfo);
 		plot.setSetting(XYPlot.LEGEND, true);
 		plot.getLegend().setSetting(Legend.ORIENTATION, Orientation.HORIZONTAL);
@@ -183,10 +192,17 @@ public class AveragePoliciesGraph extends JFrame {
 
 	@SuppressWarnings("unchecked")
 	public void getAppliancesGraph() {
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		double width = screenSize.getWidth();
+		double height = screenSize.getHeight();
+
+		int w = (int) (width/2);
+		int h = (int) (height/1.5);
 
 		// frame parameters
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setBounds(641, 0, 640, 720);
+		setBounds(w, 0, w, h);
 
 		PlotterDB p = new PlotterDB();
 		ResultSet rs = null;
@@ -283,7 +299,7 @@ public class AveragePoliciesGraph extends JFrame {
 		plot.setInsets(new Insets2D.Double(10, 10, 10, 10));
 		plot.setSetting(XYPlot.BACKGROUND, Color.WHITE);
 		plot.setSetting(XYPlot.TITLE,
-				"Average Active Appliances across Policies for run: "
+				"Average Active Appliances across Policies \n at run: "
 						+ runInfo);
 		plot.setSetting(XYPlot.LEGEND, true);
 		plot.getLegend().setSetting(Legend.ORIENTATION, Orientation.HORIZONTAL);

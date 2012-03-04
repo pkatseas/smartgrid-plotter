@@ -1,0 +1,5 @@
+This is the smartgrid plotter component.
+
+It uses:
+- GRAL (http://trac.erichseifert.de/gral) to draw the plots and 
+- JDBC (http://www.mysql.com/downloads/connector/j/) to connect to the MySQL database and retrieve simulation data.
